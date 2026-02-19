@@ -15,15 +15,21 @@ This dashboard will support strategic decision-making and allow us to track perf
 **What we need in the dashboard (page 1)**
 
 **1.Revenue by country:** Top-performing regions with corresponding revenue.
+
 **2.Revenue by Date and Year:** Comparative trends.
+
 **3.Profit and Unit sales Year-over-Year (YoY) Change:** High-level summary of YoY growth.
+
 **4.Revenue breakdown by discount band:** Distribution of revenue across different discount categories.
+
 **5.Detailed table view:** Revenue and profit details by country and year.
+
 Add whatever else you feel is necessary!
 
 ## 🛠️ Tech Stack
 
 **SQL Server:** Data extraction, cleaning, and complex transformations (CTEs).
+
 **Power BI:** Data modeling and interactive visualization.
 
 ## 🧹 Data Cleaning (SQL)
@@ -31,7 +37,9 @@ Add whatever else you feel is necessary!
 To ensure data integrity, I implemented a cleaning script that handled the following:
 
 **Currency Formatting:** Removed symbols and converted pricing to numeric types.
+
 **Null Handling:** Removed records with missing product identifiers.
+
 **Join Optimization:** Performed a complex join between Sales and Discount tables using both Discount_Band and Month to prevent data duplication.
 
 /* Example: Handling the complex Discount Join */
