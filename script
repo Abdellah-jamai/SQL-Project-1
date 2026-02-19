@@ -1,0 +1,68 @@
+
+WITH Cleaned_Sales AS (
+
+    /* Step 1: Filter out NULLs and standardize spaces in the Sales table */
+
+    SELECT 
+        CAST([Date] AS DATE) AS Date,
+        [Customer_Type],
+        Country,
+        Product AS Product_ID, -- This links to Product_Data
+        (TRIM(Discount_Band)) AS Discount_Band, -- Fixing the leading/trailing spaces
+        [Units_Sold],
+        FORMAT(CAST([Date] AS DATE), 'MMMM') AS Month, -- Needed for joining discount table
+        YEAR(CAST([Date] AS DATE)) AS Year
+    FROM product_sales
+    WHERE Product IS NOT NULL -- This removes the NULL product rows
+),
+
+Cleaned_Products AS (
+
+    /* Step 2: Clean currency symbols and fix data types */
+
+    SELECT 
+        [Product_ID],
+        Product,
+        Category,
+        Brand,
+        CAST(REPLACE([Cost_Price], '$', '') AS DECIMAL(10,2)) AS Cost_Price,
+        CAST(REPLACE([Sale_Price], '$', '') AS DECIMAL(10,2)) AS Sale_Price,
+        [Image_url]
+    FROM Product_data
+)
+
+SELECT 
+    p.Product_ID,
+    p.Product,
+    p.Category,
+    p.Brand,
+    p.Cost_Price,
+    p.Sale_Price,
+    s.Country,
+    s.Customer_Type,
+    s.Discount_Band,
+    s.Date,
+    s.Units_Sold,
+    
+    /* Financial Calculations */
+
+    (p.Sale_Price * s.Units_Sold) AS Gross_Revenue,
+    (p.Cost_Price * s.Units_Sold) AS Total_Cost,
+    d.Discount AS Discount_Percent,
+    
+    /* Discounted Revenue Logic: Revenue * (1 - Discount/100) */
+
+    CAST(
+        (p.Sale_Price * s.Units_Sold) * (1 - (d.Discount / 100.0)) 
+    AS DECIMAL(10,2)) AS Net_Revenue,
+    
+    s.Month,
+    s.Year,
+    p.[Image_url]
+
+FROM Cleaned_Sales s
+INNER JOIN Cleaned_Products p 
+    ON s.Product_ID = p.Product_ID
+INNER JOIN discount_data d 
+    ON s.Discount_Band = UPPER(TRIM(d.Discount_Band)) 
+    AND s.Month = d.Month; -- Joining on Month prevents duplicate rows
