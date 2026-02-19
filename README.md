@@ -42,6 +42,7 @@ To ensure data integrity, I implemented a cleaning script that handled the follo
 
 **Join Optimization:** Performed a complex join between Sales and Discount tables using both Discount_Band and Month to prevent data duplication.
 
+SQL
 /* Example: Handling the complex Discount Join */
 SELECT 
     s.Date,
