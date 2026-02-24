@@ -18,7 +18,9 @@ The goal was to transform raw transactional data into an interactive executive d
 ## Request From Management
 
 **Subject:** Request for dashboard development: Product analytics overview
+
 Dear ...,
+
 I hope this message finds you well. I would like to request the development of a high-level product analytics dashboard that provides insights into key product performance metrics.
 This dashboard will support strategic decision-making and allow us to track performance trends effectively.
 
@@ -45,8 +47,8 @@ Add whatever else you feel is necessary!
 **DAX:** 
 
 Total Profit = 
-
 SUMX(
+
     'Product', 
     'Product'[Net_Revenue] - 'Product'[Total_Cost]
 );
@@ -56,11 +58,14 @@ Profit YoY % =
 VAR CurrentProfit = [Total Profit]
 VAR LastYearProfit = [Profit LY]
 RETURN
-DIVIDE(CurrentProfit - LastYearProfit, LastYearProfit, 0);
+DIVIDE
+
+(CurrentProfit - LastYearProfit, LastYearProfit, 0);
 
 Revenue % of Total = 
 
 DIVIDE(
+
     [Total Net Revenue], 
     CALCULATE([Total Net Revenue], ALL('Product'))
 )
