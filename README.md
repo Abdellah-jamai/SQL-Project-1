@@ -63,4 +63,19 @@ JOIN Product_data p ON s.Product = p.[Product ID]
 JOIN discount_data d ON TRIM(s.[ Discount Band ]) = TRIM(d.[Discount Band]) 
     AND FORMAT(s.Date, 'MMMM') = d.Month;
 
+<img width="953" height="543" alt="product sales   discount optimization" src="https://github.com/user-attachments/assets/3209ab60-c256-4d28-9727-200aebf92a78" />
+
+
+
+This image displays a Power BI dashboard titled "Product Sales & Discount Optimization". It is designed to track financial performance and sales trends.
+
+
+
+
+
+
+
+
+
+
 
