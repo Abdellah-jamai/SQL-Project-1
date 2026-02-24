@@ -42,6 +42,26 @@ Add whatever else you feel is necessary!
 
 **Power BI:** Data modeling and interactive visualization.
 
+**DAX:** 
+
+Total Profit = 
+SUMX(
+    'Product', 
+    'Product'[Net_Revenue] - 'Product'[Total_Cost]
+);
+
+Profit YoY % = 
+VAR CurrentProfit = [Total Profit]
+VAR LastYearProfit = [Profit LY]
+RETURN
+DIVIDE(CurrentProfit - LastYearProfit, LastYearProfit, 0);
+
+Revenue % of Total = 
+DIVIDE(
+    [Total Net Revenue], 
+    CALCULATE([Total Net Revenue], ALL('Product'))
+)
+
 ## 🧹 Data Cleaning (SQL)
 
 To ensure data integrity, I implemented a cleaning script that handled the following:
