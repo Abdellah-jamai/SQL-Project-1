@@ -44,9 +44,9 @@ Add whatever else you feel is necessary!
 
 **Power BI:** Data modeling and interactive visualization.
 
-**DAX:** 
+'''**DAX:** 
 
-'''Total Profit = 
+Total Profit = 
 SUMX(
     'Product', 
     'Product'[Net_Revenue] - 'Product'[Total_Cost]
