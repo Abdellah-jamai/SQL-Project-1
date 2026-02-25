@@ -46,13 +46,13 @@ Add whatever else you feel is necessary!
 
 **DAX:** 
 
-"Total Profit = 
+'''Total Profit = 
 SUMX(
     'Product', 
     'Product'[Net_Revenue] - 'Product'[Total_Cost]
-);"
+);
 
-Profit YoY % = 
+'''Profit YoY % = 
 
 VAR CurrentProfit = [Total Profit]
 VAR LastYearProfit = [Profit LY]
@@ -60,7 +60,7 @@ RETURN
 DIVIDE
 (CurrentProfit - LastYearProfit, LastYearProfit, 0);
 
-Revenue % of Total = 
+'''Revenue % of Total = 
 
 DIVIDE(
     [Total Net Revenue], 
