@@ -46,12 +46,11 @@ Add whatever else you feel is necessary!
 
 **DAX:** 
 
-Total Profit = 
-
+"Total Profit = 
 SUMX(
     'Product', 
     'Product'[Net_Revenue] - 'Product'[Total_Cost]
-);
+);"
 
 Profit YoY % = 
 
